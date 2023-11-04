@@ -1,40 +1,39 @@
-import React, {useState} from 'react';
+import { useState } from 'react';
 import Ingredients from './AddItems';
-import {INGREDIENTS} from './DataItems';
+import { MENU } from './DataItems';
 
 function Burger() {
     const [selectedIngredients, setSelectedIngredients] = useState<{ [key: string]: number }>({});
-    const [burgerPrice, setBurgerPrice] = useState(30);
+    const [orderPrice, setOrderPrice] = useState(0);
 
     const handleIngredientChange = (newIngredients: { [key: string]: number }) => {
         setSelectedIngredients(newIngredients);
 
-        const newBurgerPrice = 30 +
+        const newOrderPrice =
             Object.keys(newIngredients).reduce((price, ingredient) => {
-                return price + (INGREDIENTS.find((item) => item.name === ingredient)?.price || 0) * newIngredients[ingredient];
+                return price + (MENU.find((item) => item.name === ingredient)?.price || 0) * newIngredients[ingredient];
             }, 0);
-        setBurgerPrice(newBurgerPrice);
+        setOrderPrice(newOrderPrice);
     };
 
     return (
-        <div className="DoneBurger">
-            <div className="Burger">
-                <div className="BreadTop">
-                    <div className="Seeds1"></div>
-                    <div className="Seeds2"></div>
-                </div>
-                {Object.keys(selectedIngredients).map((ingredientName, index) => {
+        <div className="Order">
+            <div className="OrderDetails">
+                {Object.keys(selectedIngredients).map((ingredientName) => {
                     const ingredientCount = selectedIngredients[ingredientName];
                     const elements = [];
                     for (let i = 0; i < ingredientCount; i++) {
-                        elements.push(<div key={`${ingredientName}-${i}`} className={ingredientName}></div>);
+                        elements.push(
+                            <div key={`${ingredientName}-${i}`} className={ingredientName}>
+                                {ingredientName} x{selectedIngredients[ingredientName] || 0}
+                            </div>
+                        );
                     }
                     return elements;
                 })}
-                <div className="BreadBottom"></div>
-                <p className="Price">Price = {burgerPrice} som</p>
+                <p className="Price">Total price: {orderPrice} som</p>
             </div>
-            <Ingredients onIngredientChange={handleIngredientChange} selectedIngredients={selectedIngredients}/>
+            <Ingredients onIngredientChange={handleIngredientChange} selectedIngredients={selectedIngredients} />
         </div>
     );
 }
