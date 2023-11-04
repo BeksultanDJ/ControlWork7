@@ -9,22 +9,25 @@ function Order() {
     const handleDishChange = (newDishes: { [key: string]: number }) => {
         setSelectedDishes(newDishes);
 
-        const newOrderPrice =
-            Object.keys(newDishes).reduce((price, dish) => {
-                return price + (MENU.find((item) => item.name === dish)?.price || 0) * newDishes[dish];
-            }, 0);
+        const newOrderPrice = Object.keys(newDishes).reduce((price, dish) => {
+            const menuItem = MENU.find((item) => item.name === dish);
+            const dishPrice = menuItem ? menuItem.price : 0;
+            return price + dishPrice * newDishes[dish];
+        }, 0);
         setOrderPrice(newOrderPrice);
     };
 
     return (
         <div className="Order">
             <div className="OrderDetails">
-                {Object.keys(selectedDishes).map((dishesName) => {
-                    const dishCount = selectedDishes[dishesName];
+                {Object.keys(selectedDishes).map((dishName) => {
+                    const dishCount = selectedDishes[dishName];
                     if (dishCount > 0) {
+                        const menuItem = MENU.find((item) => item.name === dishName);
+                        const dishPrice = menuItem ? menuItem.price : 0;
                         return (
-                            <div key={dishesName} className={dishesName}>
-                                {`${dishesName} x${dishCount}`}
+                            <div key={dishName} className={dishName}>
+                                {`${dishName} x${dishCount} - Price: ${dishPrice} som`}
                             </div>
                         );
                     }
