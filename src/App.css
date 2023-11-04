@@ -4,3 +4,18 @@
   padding: 2rem;
   text-align: center;
 }
+
+.CreatingOrderBlock {
+  border: 1px solid black;
+  padding: 15px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.MenuItems {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid black;
+  margin: 10px;
+}
