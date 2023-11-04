@@ -12,14 +12,6 @@ function MenuItems({onDishChange, selectedDishes}: MenuDishProps) {
         onDishChange(updatedDishes);
     };
 
-    const decreaseQuantity = (dishName: string) => {
-        if (selectedDishes[dishName] && selectedDishes[dishName] > 0) {
-            const updatedDishes = {...selectedDishes};
-            updatedDishes[dishName] -= 1;
-            onDishChange(updatedDishes);
-        }
-    };
-
     return (
         <div>
             <h3 className="MenuTitle">Menu</h3>
@@ -30,7 +22,6 @@ function MenuItems({onDishChange, selectedDishes}: MenuDishProps) {
                             <span>{dish.name}</span>
                             <p>Price: {dish.price}</p>
                         </button>
-                        <button onClick={() => decreaseQuantity(dish.name)}>Remove</button>
                     </div>
                 ))}
             </div>
