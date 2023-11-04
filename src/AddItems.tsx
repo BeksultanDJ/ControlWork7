@@ -1,5 +1,4 @@
-import React from 'react';
-import {INGREDIENTS} from './DataItems';
+import {MENU} from './DataItems';
 
 interface IngredientsProps {
     onIngredientChange: (selectedIngredients: { [key: string]: number }) => void;
@@ -22,14 +21,12 @@ function Ingredients({onIngredientChange, selectedIngredients}: IngredientsProps
     };
 
     return (
-        <div className="addIngredientsBlock">
-            {INGREDIENTS.map((ingredient) => (
-                <div key={ingredient.name} className="IngredientsBtn">
+        <div className="CreatingOrderBlock">
+            {MENU.map((ingredient) => (
+                <div key={ingredient.name} className="MenuItems">
                     <button onClick={() => increaseQuantity(ingredient.name)}>
-                        <img className="ingredient" src={ingredient.image} alt={ingredient.name}/>
+                        <span>{ingredient.name}</span>
                     </button>
-                    <span>{ingredient.name}</span>
-                    <span>{selectedIngredients[ingredient.name] || 0}</span>
                     <button onClick={() => decreaseQuantity(ingredient.name)}>Remove</button>
                 </div>
             ))}
