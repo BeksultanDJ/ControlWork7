@@ -12,13 +12,21 @@ h3 {
   margin: 0 0 20px 0;
 }
 
+.Notice p {
+  margin: 5px 0;
+}
+
+.OrderDetailsTitle {
+  border-bottom: 2px solid lightgray;
+}
+
 .Order {
   display: flex;
 
 }
 
 .CreatingOrderBlock {
-  border: 1px solid black;
+  border: 2px solid cornflowerblue;
   border-radius: 8px;
   padding: 15px;
   display: flex;
@@ -35,7 +43,6 @@ h3 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid black;
   padding: 4px;
   margin: 10px;
   width: 100px;
@@ -50,21 +57,22 @@ h3 {
 
 .OrderedDish {
   display: flex;
+  margin: 15px;
 }
 
 .OrderedDish p {
-  margin: 25px 0 0 auto;
+  margin: 25px auto 0 auto;
 }
 
 .OrderDetails {
   margin: 0 50px 0 0;
-  border: 1px solid black;
+  border: 3px solid cornflowerblue;
   border-radius: 8px;
   padding: 15px;
-  min-width: 235px;
+  min-width: 360px;
 }
 
 .Price {
-  border-top: 1px solid black;
+  border-top: 2px solid lightgray;
   padding: 10px 0 0 0;
 }
