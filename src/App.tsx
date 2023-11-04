@@ -1,11 +1,11 @@
 import './App.css';
-import Burger from './OrderDetails.tsx';
+import Order from './OrderDetails.tsx';
 
 function App() {
 
   return (
       <div className="App">
-        <Burger/>
+        <Order/>
       </div>
   )
 }

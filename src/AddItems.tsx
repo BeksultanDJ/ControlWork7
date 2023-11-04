@@ -1,37 +1,38 @@
-import {MENU} from './DataItems';
+import { MENU } from './DataItems';
 
-interface IngredientsProps {
-    onIngredientChange: (selectedIngredients: { [key: string]: number }) => void;
-    selectedIngredients: { [key: string]: number };
+interface MenuDishProps {
+    onDishChange: (selectedDishes: { [key: string]: number }) => void;
+    selectedDishes: { [key: string]: number };
 }
 
-function Ingredients({onIngredientChange, selectedIngredients}: IngredientsProps) {
-    const increaseQuantity = (ingredientName: string) => {
-        const updatedIngredients = {...selectedIngredients};
-        updatedIngredients[ingredientName] = (selectedIngredients[ingredientName] || 0) + 1;
-        onIngredientChange(updatedIngredients);
+function MenuItems({ onDishChange, selectedDishes }: MenuDishProps) {
+    const increaseQuantity = (dishName: string) => {
+        const updatedDishes = { ...selectedDishes };
+        updatedDishes[dishName] = (selectedDishes[dishName] || 0) + 1;
+        onDishChange(updatedDishes);
     };
 
-    const decreaseQuantity = (ingredientName: string) => {
-        if (selectedIngredients[ingredientName] && selectedIngredients[ingredientName] > 0) {
-            const updatedIngredients = {...selectedIngredients};
-            updatedIngredients[ingredientName] -= 1;
-            onIngredientChange(updatedIngredients);
+    const decreaseQuantity = (dishName: string) => {
+        if (selectedDishes[dishName] && selectedDishes[dishName] > 0) {
+            const updatedDishes = { ...selectedDishes };
+            updatedDishes[dishName] -= 1;
+            onDishChange(updatedDishes);
         }
     };
 
     return (
         <div className="CreatingOrderBlock">
-            {MENU.map((ingredient) => (
-                <div key={ingredient.name} className="MenuItems">
-                    <button onClick={() => increaseQuantity(ingredient.name)}>
-                        <span>{ingredient.name}</span>
+            {MENU.map((dish) => (
+                <div key={dish.name} className="MenuItems">
+                    <button onClick={() => increaseQuantity(dish.name)}>
+                        <span>{dish.name}</span>
+                        <p>Price: {dish.price}</p>
                     </button>
-                    <button onClick={() => decreaseQuantity(ingredient.name)}>Remove</button>
+                    <button onClick={() => decreaseQuantity(dish.name)}>Remove</button>
                 </div>
             ))}
         </div>
     );
 }
 
-export default Ingredients;
+export default MenuItems;

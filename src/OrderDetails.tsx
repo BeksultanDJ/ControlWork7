@@ -1,17 +1,17 @@
 import { useState } from 'react';
-import Ingredients from './AddItems';
+import Dishes from './AddItems';
 import { MENU } from './DataItems';
 
-function Burger() {
-    const [selectedIngredients, setSelectedIngredients] = useState<{ [key: string]: number }>({});
+function Order() {
+    const [selectedDishes, setSelectedDishes] = useState<{ [key: string]: number }>({});
     const [orderPrice, setOrderPrice] = useState(0);
 
-    const handleIngredientChange = (newIngredients: { [key: string]: number }) => {
-        setSelectedIngredients(newIngredients);
+    const handleDishChange = (newDishes: { [key: string]: number }) => {
+        setSelectedDishes(newDishes);
 
         const newOrderPrice =
-            Object.keys(newIngredients).reduce((price, ingredient) => {
-                return price + (MENU.find((item) => item.name === ingredient)?.price || 0) * newIngredients[ingredient];
+            Object.keys(newDishes).reduce((price, dish) => {
+                return price + (MENU.find((item) => item.name === dish)?.price || 0) * newDishes[dish];
             }, 0);
         setOrderPrice(newOrderPrice);
     };
@@ -19,12 +19,12 @@ function Burger() {
     return (
         <div className="Order">
             <div className="OrderDetails">
-                {Object.keys(selectedIngredients).map((ingredientName) => {
-                    const ingredientCount = selectedIngredients[ingredientName];
-                    if (ingredientCount > 0) {
+                {Object.keys(selectedDishes).map((dishesName) => {
+                    const dishCount = selectedDishes[dishesName];
+                    if (dishCount > 0) {
                         return (
-                            <div key={ingredientName} className={ingredientName}>
-                                {`${ingredientName} x${ingredientCount}`}
+                            <div key={dishesName} className={dishesName}>
+                                {`${dishesName} x${dishCount}`}
                             </div>
                         );
                     }
@@ -32,9 +32,9 @@ function Burger() {
                 })}
                 <p className="Price">Total price: {orderPrice} som</p>
             </div>
-            <Ingredients onIngredientChange={handleIngredientChange} selectedIngredients={selectedIngredients} />
+            <Dishes onDishChange={handleDishChange} selectedDishes={selectedDishes} />
         </div>
     );
 }
 
-export default Burger;
+export default Order;
