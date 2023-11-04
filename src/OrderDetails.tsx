@@ -6,15 +6,28 @@ function Order() {
     const [selectedDishes, setSelectedDishes] = useState<{ [key: string]: number }>({});
     const [orderPrice, setOrderPrice] = useState(0);
 
-    const handleDishChange = (newDishes: { [key: string]: number }) => {
-        setSelectedDishes(newDishes);
-
-        const newOrderPrice = Object.keys(newDishes).reduce((price, dish) => {
+    const calculateOrderPrice = (dishes: { [key: string]: number }) => {
+        return Object.keys(dishes).reduce((price, dish) => {
             const menuItem = MENU.find((item) => item.name === dish);
             const dishPrice = menuItem ? menuItem.price : 0;
-            return price + dishPrice * newDishes[dish];
+            return price + dishPrice * dishes[dish];
         }, 0);
+    };
+
+    const handleDishChange = (newDishes: { [key: string]: number }) => {
+        setSelectedDishes(newDishes);
+        const newOrderPrice = calculateOrderPrice(newDishes);
         setOrderPrice(newOrderPrice);
+    };
+
+    const removeDish = (dishName: string) => {
+        const updatedDishes = { ...selectedDishes };
+        if (updatedDishes[dishName] && updatedDishes[dishName] > 0) {
+            updatedDishes[dishName] -= 1;
+            setSelectedDishes(updatedDishes);
+            const newOrderPrice = calculateOrderPrice(updatedDishes);
+            setOrderPrice(newOrderPrice);
+        }
     };
 
     return (
@@ -30,6 +43,7 @@ function Order() {
                             <div key={dishName} className={`${dishName} OrderedDish`}>
                                 {`${dishName} x${dishCount}`}
                                 <p>Price: {`${dishPrice} som`}</p>
+                                <button onClick={() => removeDish(dishName)}>Remove</button>
                             </div>
                         );
                     }
