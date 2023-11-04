@@ -17,7 +17,7 @@ h3 {
 }
 
 .OrderDetailsTitle {
-  border-bottom: 2px solid lightgray;
+  border-bottom: 2px solid #577db6;
 }
 
 .Order {
@@ -27,6 +27,7 @@ h3 {
 
 .CreatingOrderBlock {
   border: 2px solid cornflowerblue;
+  background: #d9e8ff;
   border-radius: 8px;
   padding: 15px;
   display: flex;
@@ -67,12 +68,13 @@ h3 {
 .OrderDetails {
   margin: 0 50px 0 0;
   border: 3px solid cornflowerblue;
+  background: #d9e8ff;
   border-radius: 8px;
   padding: 15px;
   min-width: 360px;
 }
 
 .Price {
-  border-top: 2px solid lightgray;
+  border-top: 2px solid #577db6;
   padding: 10px 0 0 0;
 }
