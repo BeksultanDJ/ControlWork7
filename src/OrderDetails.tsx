@@ -21,9 +21,12 @@ function Order() {
     };
 
     const removeDish = (dishName: string) => {
-        const updatedDishes = {...selectedDishes};
+        const updatedDishes = { ...selectedDishes };
         if (updatedDishes[dishName] && updatedDishes[dishName] > 0) {
             updatedDishes[dishName] -= 1;
+            if (updatedDishes[dishName] === 0) {
+                delete updatedDishes[dishName];
+            }
             setSelectedDishes(updatedDishes);
             const newOrderPrice = calculateOrderPrice(updatedDishes);
             setOrderPrice(newOrderPrice);
