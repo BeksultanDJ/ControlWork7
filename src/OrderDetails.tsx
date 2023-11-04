@@ -20,14 +20,16 @@ function Order() {
     return (
         <div className="Order">
             <div className="OrderDetails">
+                <h3>Order Details:</h3>
                 {Object.keys(selectedDishes).map((dishName) => {
                     const dishCount = selectedDishes[dishName];
                     if (dishCount > 0) {
                         const menuItem = MENU.find((item) => item.name === dishName);
                         const dishPrice = menuItem ? menuItem.price : 0;
                         return (
-                            <div key={dishName} className={dishName}>
-                                {`${dishName} x${dishCount} - Price: ${dishPrice} som`}
+                            <div key={dishName} className={`${dishName} OrderedDish`}>
+                                {`${dishName} x${dishCount}`}
+                                <p>Price: {`${dishPrice} som`}</p>
                             </div>
                         );
                     }
