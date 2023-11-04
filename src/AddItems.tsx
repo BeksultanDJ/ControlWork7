@@ -20,7 +20,7 @@ function MenuItems({onDishChange, selectedDishes}: MenuDishProps) {
                     <div key={dish.name}>
                         <button className="MenuItems" onClick={() => increaseQuantity(dish.name)}>
                             <span>{dish.name}</span>
-                            <p>Price: {dish.price}</p>
+                            <p>Price: {dish.price} KGZ</p>
                         </button>
                     </div>
                 ))}

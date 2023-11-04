@@ -46,7 +46,7 @@ function Order() {
                             return (
                                 <div key={dishName} className={`${dishName} OrderedDish`}>
                                     {`${dishName} x${dishCount}`}
-                                    <p>Price: {`${dishPrice} som`}</p>
+                                    <p>Price: {`${dishPrice} KGZ`}</p>
                                     <button onClick={() => removeDish(dishName)}>Remove</button>
                                 </div>
                             );
