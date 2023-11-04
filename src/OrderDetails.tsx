@@ -21,15 +21,14 @@ function Burger() {
             <div className="OrderDetails">
                 {Object.keys(selectedIngredients).map((ingredientName) => {
                     const ingredientCount = selectedIngredients[ingredientName];
-                    const elements = [];
-                    for (let i = 0; i < ingredientCount; i++) {
-                        elements.push(
-                            <div key={`${ingredientName}-${i}`} className={ingredientName}>
-                                {ingredientName} x{selectedIngredients[ingredientName] || 0}
+                    if (ingredientCount > 0) {
+                        return (
+                            <div key={ingredientName} className={ingredientName}>
+                                {`${ingredientName} x${ingredientCount}`}
                             </div>
                         );
                     }
-                    return elements;
+                    return null;
                 })}
                 <p className="Price">Total price: {orderPrice} som</p>
             </div>
